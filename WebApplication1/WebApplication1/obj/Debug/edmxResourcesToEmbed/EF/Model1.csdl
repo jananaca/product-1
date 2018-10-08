@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="technicalreviewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="groups">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Privilege" Type="Int32" />
+    <Property Name="GroupName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="privilege1" Relationship="Self.FK_G_P" FromRole="groups" ToRole="privilege" />
+    <NavigationProperty Name="users" Relationship="Self.FK_U_G" FromRole="groups" ToRole="users" />
+  </EntityType>
+  <EntityType Name="material">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Link" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="Int32" />
+  </EntityType>
+  <EntityType Name="privilege">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="AddReview" Type="Int32" />
+    <Property Name="Review" Type="Int32" />
+    <Property Name="Administrator" Type="Int32" />
+    <Property Name="Technical" Type="Int32" />
+    <NavigationProperty Name="groups" Relationship="Self.FK_G_P" FromRole="privilege" ToRole="groups" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="userName" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="Category" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Groups" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="FZR" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="filepath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="addDate" Type="DateTime" />
+    <Property Name="state" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="upjd" Relationship="technicalreviewModel.FK_P_U" FromRole="product" ToRole="upjd" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PassWord" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Group" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Sex" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Professional" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Source" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Department" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RegionDate" Type="DateTime" />
+    <Property Name="Remark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="groups" Relationship="Self.FK_U_G" FromRole="users" ToRole="groups" />
+  </EntityType>
+  <Association Name="FK_G_P">
+    <End Role="privilege" Type="Self.privilege" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="groups" Type="Self.groups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="privilege">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="groups">
+        <PropertyRef Name="Privilege" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_U_G">
+    <End Role="groups" Type="Self.groups" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="users" Type="Self.users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="groups">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="Group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EFEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="category" EntityType="Self.category" />
+    <EntitySet Name="groups" EntityType="Self.groups" />
+    <EntitySet Name="material" EntityType="Self.material" />
+    <EntitySet Name="privilege" EntityType="Self.privilege" />
+    <EntitySet Name="product" EntityType="Self.product" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <AssociationSet Name="FK_G_P" Association="Self.FK_G_P">
+      <End Role="privilege" EntitySet="privilege" />
+      <End Role="groups" EntitySet="groups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_U_G" Association="Self.FK_U_G">
+      <End Role="groups" EntitySet="groups" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <EntitySet Name="upjd" EntityType="technicalreviewModel.upjd" />
+    <AssociationSet Name="FK_P_U" Association="technicalreviewModel.FK_P_U">
+      <End Role="product" EntitySet="product" />
+      <End Role="upjd" EntitySet="upjd" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="upjd">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="upDate" Type="String" Nullable="false" />
+    <NavigationProperty Name="product" Relationship="technicalreviewModel.FK_P_U" FromRole="upjd" ToRole="product" />
+  </EntityType>
+  <Association Name="FK_P_U">
+    <End Type="technicalreviewModel.product" Role="product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="technicalreviewModel.upjd" Role="upjd" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="upjd">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,476 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="technicalreviewModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="category">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CategoryName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="groups">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Privilege" Type="Int32" />
+    <Property Name="GroupName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="privilege1" Relationship="Self.FK_G_P" FromRole="groups" ToRole="privilege" />
+    <NavigationProperty Name="users" Relationship="Self.FK_U_G" FromRole="groups" ToRole="users" />
+  </EntityType>
+  <EntityType Name="material">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Link" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+    <Property Name="state" Type="Int32" />
+  </EntityType>
+  <EntityType Name="privilege">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="AddReview" Type="Int32" />
+    <Property Name="Review" Type="Int32" />
+    <Property Name="Administrator" Type="Int32" />
+    <Property Name="Technical" Type="Int32" />
+    <Property Name="TJ" Type="Int32" />
+    <Property Name="ZG" Type="Int32" />
+    <NavigationProperty Name="groups" Relationship="Self.FK_G_P" FromRole="privilege" ToRole="groups" />
+  </EntityType>
+  <EntityType Name="product">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="userName" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="Category" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Groups" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="FZR" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="filepath" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="addDate" Type="DateTime" />
+    <Property Name="state" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="TJDJ" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="QRDJ" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="upjd" Relationship="Self.FK_P_U" FromRole="product" ToRole="upjd" />
+    <Property Name="BH" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tpfs" Relationship="technicalreviewModel.FK_F_P" FromRole="product" ToRole="tpfs" />
+    <NavigationProperty Name="ktpf" Relationship="technicalreviewModel.FK_P_P1" FromRole="product" ToRole="ktpf" />
+    <NavigationProperty Name="pjtj" Relationship="technicalreviewModel.FK_P_P2" FromRole="product" ToRole="pjtj" />
+    <NavigationProperty Name="tp" Relationship="technicalreviewModel.FK_TP_P" FromRole="product" ToRole="tp" />
+  </EntityType>
+  <EntityType Name="productjd">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="YEAR" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NextState" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tj" Relationship="technicalreviewModel.FK_T_J" FromRole="productjd" ToRole="tj" />
+    <NavigationProperty Name="tpfs" Relationship="technicalreviewModel.FK_F_J" FromRole="productjd" ToRole="tpfs" />
+    <NavigationProperty Name="confirm" Relationship="technicalreviewModel.FK_C_J" FromRole="productjd" ToRole="confirm" />
+    <NavigationProperty Name="pjtj" Relationship="technicalreviewModel.FK_P_J" FromRole="productjd" ToRole="pjtj" />
+  </EntityType>
+  <EntityType Name="upjd">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="upDate" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="product" Relationship="Self.FK_P_U" FromRole="upjd" ToRole="product" />
+  </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PassWord" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Group" Type="Int32" />
+    <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Sex" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Professional" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Source" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="Department" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="State" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="RegionDate" Type="DateTime" />
+    <Property Name="Remark" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="groups" Relationship="Self.FK_U_G" FromRole="users" ToRole="groups" />
+    <NavigationProperty Name="tj" Relationship="technicalreviewModel.FK_T_M" FromRole="users" ToRole="tj" />
+    <NavigationProperty Name="tpfs" Relationship="technicalreviewModel.FK_F_M" FromRole="users" ToRole="tpfs" />
+    <NavigationProperty Name="ktpf" Relationship="technicalreviewModel.FK_P_U1" FromRole="users" ToRole="ktpf" />
+    <NavigationProperty Name="pjtj" Relationship="technicalreviewModel.FK_P_M" FromRole="users" ToRole="pjtj" />
+    <NavigationProperty Name="tp" Relationship="technicalreviewModel.FK_TP_M" FromRole="users" ToRole="tp" />
+  </EntityType>
+  <Association Name="FK_G_P">
+    <End Role="privilege" Type="Self.privilege" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="groups" Type="Self.groups" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="privilege">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="groups">
+        <PropertyRef Name="Privilege" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_U_G">
+    <End Role="groups" Type="Self.groups" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="users" Type="Self.users" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="groups">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="users">
+        <PropertyRef Name="Group" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_P_U">
+    <End Role="product" Type="Self.product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="upjd" Type="Self.upjd" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="upjd">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EF" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="category" EntityType="Self.category" />
+    <EntitySet Name="groups" EntityType="Self.groups" />
+    <EntitySet Name="material" EntityType="Self.material" />
+    <EntitySet Name="privilege" EntityType="Self.privilege" />
+    <EntitySet Name="product" EntityType="Self.product" />
+    <EntitySet Name="productjd" EntityType="Self.productjd" />
+    <EntitySet Name="upjd" EntityType="Self.upjd" />
+    <EntitySet Name="users" EntityType="Self.users" />
+    <AssociationSet Name="FK_G_P" Association="Self.FK_G_P">
+      <End Role="privilege" EntitySet="privilege" />
+      <End Role="groups" EntitySet="groups" />
+    </AssociationSet>
+    <AssociationSet Name="FK_U_G" Association="Self.FK_U_G">
+      <End Role="groups" EntitySet="groups" />
+      <End Role="users" EntitySet="users" />
+    </AssociationSet>
+    <AssociationSet Name="FK_P_U" Association="Self.FK_P_U">
+      <End Role="product" EntitySet="product" />
+      <End Role="upjd" EntitySet="upjd" />
+    </AssociationSet>
+    <EntitySet Name="confirm" EntityType="technicalreviewModel.confirm" />
+    <EntitySet Name="tj" EntityType="technicalreviewModel.tj" />
+    <AssociationSet Name="FK_T_J" Association="technicalreviewModel.FK_T_J">
+      <End Role="productjd" EntitySet="productjd" />
+      <End Role="tj" EntitySet="tj" />
+    </AssociationSet>
+    <AssociationSet Name="FK_T_M" Association="technicalreviewModel.FK_T_M">
+      <End Role="users" EntitySet="users" />
+      <End Role="tj" EntitySet="tj" />
+    </AssociationSet>
+    <EntitySet Name="tpfs" EntityType="technicalreviewModel.tpfs" />
+    <AssociationSet Name="FK_F_P" Association="technicalreviewModel.FK_F_P">
+      <End Role="product" EntitySet="product" />
+      <End Role="tpfs" EntitySet="tpfs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_F_J" Association="technicalreviewModel.FK_F_J">
+      <End Role="productjd" EntitySet="productjd" />
+      <End Role="tpfs" EntitySet="tpfs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_F_M" Association="technicalreviewModel.FK_F_M">
+      <End Role="users" EntitySet="users" />
+      <End Role="tpfs" EntitySet="tpfs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_C_J" Association="technicalreviewModel.FK_C_J">
+      <End Role="productjd" EntitySet="productjd" />
+      <End Role="confirm" EntitySet="confirm" />
+    </AssociationSet>
+    <EntitySet Name="ktpf" EntityType="technicalreviewModel.ktpf" />
+    <AssociationSet Name="FK_P_P1" Association="technicalreviewModel.FK_P_P1">
+      <End Role="product" EntitySet="product" />
+      <End Role="ktpf" EntitySet="ktpf" />
+    </AssociationSet>
+    <AssociationSet Name="FK_P_U1" Association="technicalreviewModel.FK_P_U1">
+      <End Role="users" EntitySet="users" />
+      <End Role="ktpf" EntitySet="ktpf" />
+    </AssociationSet>
+    <EntitySet Name="pjtj" EntityType="technicalreviewModel.pjtj" />
+    <AssociationSet Name="FK_P_J" Association="technicalreviewModel.FK_P_J">
+      <End Role="productjd" EntitySet="productjd" />
+      <End Role="pjtj" EntitySet="pjtj" />
+    </AssociationSet>
+    <AssociationSet Name="FK_P_M" Association="technicalreviewModel.FK_P_M">
+      <End Role="users" EntitySet="users" />
+      <End Role="pjtj" EntitySet="pjtj" />
+    </AssociationSet>
+    <AssociationSet Name="FK_P_P2" Association="technicalreviewModel.FK_P_P2">
+      <End Role="product" EntitySet="product" />
+      <End Role="pjtj" EntitySet="pjtj" />
+    </AssociationSet>
+    <EntitySet Name="tp" EntityType="technicalreviewModel.tp" />
+    <AssociationSet Name="FK_TP_P" Association="technicalreviewModel.FK_TP_P">
+      <End Role="product" EntitySet="product" />
+      <End Role="tp" EntitySet="tp" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TP_M" Association="technicalreviewModel.FK_TP_M">
+      <End Role="users" EntitySet="users" />
+      <End Role="tp" EntitySet="tp" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="confirm">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="source" Type="Int32" />
+    <Property Name="addDate" Type="DateTime" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="jdId" Type="Int32" />
+    <NavigationProperty Name="productjd" Relationship="technicalreviewModel.FK_C_J" FromRole="confirm" ToRole="productjd" />
+  </EntityType>
+  <EntityType Name="tj">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="MemberId" Type="Int32" />
+    <Property Name="Date" Type="DateTime" />
+    <Property Name="JDId" Type="Int32" />
+    <NavigationProperty Name="productjd" Relationship="technicalreviewModel.FK_T_J" FromRole="tj" ToRole="productjd" />
+    <NavigationProperty Name="users" Relationship="technicalreviewModel.FK_T_M" FromRole="tj" ToRole="users" />
+  </EntityType>
+  <Association Name="FK_T_J">
+    <End Type="technicalreviewModel.productjd" Role="productjd" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="technicalreviewModel.tj" Role="tj" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productjd">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tj">
+        <PropertyRef Name="JDId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_T_M">
+    <End Type="technicalreviewModel.users" Role="users" Multiplicity="0..1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="technicalreviewModel.tj" Role="tj" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tj">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tpfs">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productId" Type="Int32" />
+    <Property Name="MemberId" Type="Int32" />
+    <Property Name="jdId" Type="Int32" />
+    <Property Name="fs" Type="Int32" />
+    <Property Name="Date" Type="DateTime" />
+    <Property Name="lb" Type="Int32" />
+    <NavigationProperty Name="product" Relationship="technicalreviewModel.FK_F_P" FromRole="tpfs" ToRole="product" />
+    <NavigationProperty Name="productjd" Relationship="technicalreviewModel.FK_F_J" FromRole="tpfs" ToRole="productjd" />
+    <NavigationProperty Name="users" Relationship="technicalreviewModel.FK_F_M" FromRole="tpfs" ToRole="users" />
+  </EntityType>
+  <Association Name="FK_F_P">
+    <End Type="technicalreviewModel.product" Role="product" Multiplicity="0..1" />
+    <End Type="technicalreviewModel.tpfs" Role="tpfs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tpfs">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_F_J">
+    <End Type="technicalreviewModel.productjd" Role="productjd" Multiplicity="0..1" />
+    <End Type="technicalreviewModel.tpfs" Role="tpfs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productjd">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tpfs">
+        <PropertyRef Name="jdId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_F_M">
+    <End Type="technicalreviewModel.users" Role="users" Multiplicity="0..1" />
+    <End Type="technicalreviewModel.tpfs" Role="tpfs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tpfs">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_C_J">
+    <End Type="technicalreviewModel.productjd" Role="productjd" Multiplicity="0..1" />
+    <End Type="technicalreviewModel.confirm" Role="confirm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productjd">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="confirm">
+        <PropertyRef Name="jdId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="ktpf">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productId" Type="Int32" Nullable="false" />
+    <Property Name="memberId" Type="Int32" Nullable="false" />
+    <Property Name="jssp" Type="Int32" />
+    <Property Name="jsnd" Type="Int32" />
+    <Property Name="jjxy" Type="Int32" />
+    <Property Name="zscq" Type="Int32" />
+    <Property Name="shxy" Type="Int32" />
+    <Property Name="tgyy" Type="Int32" />
+    <Property Name="dfhj" Type="Int32" />
+    <NavigationProperty Name="product" Relationship="technicalreviewModel.FK_P_P1" FromRole="ktpf" ToRole="product" />
+    <NavigationProperty Name="users" Relationship="technicalreviewModel.FK_P_U1" FromRole="ktpf" ToRole="users" />
+  </EntityType>
+  <Association Name="FK_P_P1">
+    <End Type="technicalreviewModel.product" Role="product" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="technicalreviewModel.ktpf" Role="ktpf" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ktpf">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_P_U1">
+    <End Type="technicalreviewModel.users" Role="users" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Type="technicalreviewModel.ktpf" Role="ktpf" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="ktpf">
+        <PropertyRef Name="memberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="pjtj">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="MemberId" Type="Int32" />
+    <Property Name="productId" Type="Int32" />
+    <Property Name="jdId" Type="Int32" />
+    <NavigationProperty Name="productjd" Relationship="technicalreviewModel.FK_P_J" FromRole="pjtj" ToRole="productjd" />
+    <NavigationProperty Name="users" Relationship="technicalreviewModel.FK_P_M" FromRole="pjtj" ToRole="users" />
+    <NavigationProperty Name="product" Relationship="technicalreviewModel.FK_P_P2" FromRole="pjtj" ToRole="product" />
+  </EntityType>
+  <Association Name="FK_P_J">
+    <End Type="technicalreviewModel.productjd" Role="productjd" Multiplicity="0..1" />
+    <End Type="technicalreviewModel.pjtj" Role="pjtj" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="productjd">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="pjtj">
+        <PropertyRef Name="jdId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_P_M">
+    <End Type="technicalreviewModel.users" Role="users" Multiplicity="0..1" />
+    <End Type="technicalreviewModel.pjtj" Role="pjtj" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="pjtj">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_P_P2">
+    <End Type="technicalreviewModel.product" Role="product" Multiplicity="0..1" />
+    <End Type="technicalreviewModel.pjtj" Role="pjtj" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="pjtj">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="tp">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="productId" Type="Int32" />
+    <Property Name="MemberId" Type="Int32" />
+    <Property Name="state" Type="Int32" />
+    <Property Name="zdstate" Type="Int32" />
+    <NavigationProperty Name="product" Relationship="technicalreviewModel.FK_TP_P" FromRole="tp" ToRole="product" />
+    <NavigationProperty Name="users" Relationship="technicalreviewModel.FK_TP_M" FromRole="tp" ToRole="users" />
+  </EntityType>
+  <Association Name="FK_TP_P">
+    <End Type="technicalreviewModel.product" Role="product" Multiplicity="0..1" />
+    <End Type="technicalreviewModel.tp" Role="tp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="product">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tp">
+        <PropertyRef Name="productId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TP_M">
+    <End Type="technicalreviewModel.users" Role="users" Multiplicity="0..1" />
+    <End Type="technicalreviewModel.tp" Role="tp" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="tp">
+        <PropertyRef Name="MemberId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

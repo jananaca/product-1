@@ -1,0 +1,27 @@
+﻿@model int
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+
+    </div>
+</body>
+@if (Model == 0)
+{
+    <script>
+        alert("课题已经存在");
+        window.location="/upproduct/xjkt"
+    </script>
+}
+else
+{
+    <script>
+        alert("创建成功");
+        window.location = "/upproduct/ktlb"
+    </script>
+}
+</html>

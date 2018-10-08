@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="technicalreviewModelStoreContainer" CdmEntityContainer="EF">
+    <EntitySetMapping Name="category">
+      <EntityTypeMapping TypeName="technicalreviewModel.category">
+        <MappingFragment StoreEntitySet="category">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="CategoryName" ColumnName="CategoryName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="groups">
+      <EntityTypeMapping TypeName="technicalreviewModel.groups">
+        <MappingFragment StoreEntitySet="groups">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Privilege" ColumnName="Privilege" />
+          <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="material">
+      <EntityTypeMapping TypeName="technicalreviewModel.material">
+        <MappingFragment StoreEntitySet="material">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Link" ColumnName="Link" />
+          <ScalarProperty Name="state" ColumnName="state" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="privilege">
+      <EntityTypeMapping TypeName="technicalreviewModel.privilege">
+        <MappingFragment StoreEntitySet="privilege">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="AddReview" ColumnName="AddReview" />
+          <ScalarProperty Name="Review" ColumnName="Review" />
+          <ScalarProperty Name="Administrator" ColumnName="Administrator" />
+          <ScalarProperty Name="Technical" ColumnName="Technical" />
+          <ScalarProperty Name="TJ" ColumnName="TJ" />
+          <ScalarProperty Name="ZG" ColumnName="ZG" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="product">
+      <EntityTypeMapping TypeName="technicalreviewModel.product">
+        <MappingFragment StoreEntitySet="product">
+          <ScalarProperty Name="BH" ColumnName="BH" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="userName" ColumnName="userName" />
+          <ScalarProperty Name="Category" ColumnName="Category" />
+          <ScalarProperty Name="Groups" ColumnName="Groups" />
+          <ScalarProperty Name="FZR" ColumnName="FZR" />
+          <ScalarProperty Name="filepath" ColumnName="filepath" />
+          <ScalarProperty Name="addDate" ColumnName="addDate" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="TJDJ" ColumnName="TJDJ" />
+          <ScalarProperty Name="QRDJ" ColumnName="QRDJ" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="productjd">
+      <EntityTypeMapping TypeName="technicalreviewModel.productjd">
+        <MappingFragment StoreEntitySet="productjd">
+          <ScalarProperty Name="NextState" ColumnName="NextState" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="YEAR" ColumnName="YEAR" />
+          <ScalarProperty Name="State" ColumnName="State" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="upjd">
+      <EntityTypeMapping TypeName="technicalreviewModel.upjd">
+        <MappingFragment StoreEntitySet="upjd">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+          <ScalarProperty Name="upDate" ColumnName="upDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="technicalreviewModel.users">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="UserName" ColumnName="UserName" />
+          <ScalarProperty Name="PassWord" ColumnName="PassWord" />
+          <ScalarProperty Name="Group" ColumnName="Group" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Sex" ColumnName="Sex" />
+          <ScalarProperty Name="Professional" ColumnName="Professional" />
+          <ScalarProperty Name="Source" ColumnName="Source" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="RegionDate" ColumnName="RegionDate" />
+          <ScalarProperty Name="Remark" ColumnName="Remark" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="confirm">
+      <EntityTypeMapping TypeName="technicalreviewModel.confirm">
+        <MappingFragment StoreEntitySet="confirm">
+          <ScalarProperty Name="jdId" ColumnName="jdId" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="addDate" ColumnName="addDate" />
+          <ScalarProperty Name="source" ColumnName="source" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tj">
+      <EntityTypeMapping TypeName="technicalreviewModel.tj">
+        <MappingFragment StoreEntitySet="tj">
+          <ScalarProperty Name="JDId" ColumnName="JDId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tpfs">
+      <EntityTypeMapping TypeName="technicalreviewModel.tpfs">
+        <MappingFragment StoreEntitySet="tpfs">
+          <ScalarProperty Name="lb" ColumnName="lb" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="fs" ColumnName="fs" />
+          <ScalarProperty Name="jdId" ColumnName="jdId" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ktpf">
+      <EntityTypeMapping TypeName="technicalreviewModel.ktpf">
+        <MappingFragment StoreEntitySet="ktpf">
+          <ScalarProperty Name="dfhj" ColumnName="dfhj" />
+          <ScalarProperty Name="tgyy" ColumnName="tgyy" />
+          <ScalarProperty Name="shxy" ColumnName="shxy" />
+          <ScalarProperty Name="zscq" ColumnName="zscq" />
+          <ScalarProperty Name="jjxy" ColumnName="jjxy" />
+          <ScalarProperty Name="jsnd" ColumnName="jsnd" />
+          <ScalarProperty Name="jssp" ColumnName="jssp" />
+          <ScalarProperty Name="memberId" ColumnName="memberId" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pjtj">
+      <EntityTypeMapping TypeName="technicalreviewModel.pjtj">
+        <MappingFragment StoreEntitySet="pjtj">
+          <ScalarProperty Name="jdId" ColumnName="jdId" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tp">
+      <EntityTypeMapping TypeName="technicalreviewModel.tp">
+        <MappingFragment StoreEntitySet="tp">
+          <ScalarProperty Name="zdstate" ColumnName="zdstate" />
+          <ScalarProperty Name="state" ColumnName="state" />
+          <ScalarProperty Name="MemberId" ColumnName="MemberId" />
+          <ScalarProperty Name="productId" ColumnName="productId" />
+          <ScalarProperty Name="ID" ColumnName="ID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

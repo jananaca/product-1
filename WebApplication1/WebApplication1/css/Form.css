@@ -1,0 +1,17 @@
+.formtable
+{
+    background-color: #c8c8c8;
+    border:1px solid #c8c8c8;
+    width: 70%;
+    height: 50%;
+}
+.tr1
+{
+    background-color: #f9bea8;
+    text-align: center;
+}
+.tr2
+{
+    background-color: #e3fcff;
+    padding-left: 20px;
+}
